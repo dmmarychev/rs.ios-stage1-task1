@@ -71,26 +71,41 @@
             }
         }
         
+        while (numberOfAvailableReplacements > 0) {
+        
+        
         if (numberOfAvailableReplacements > 1) {
             
-            
-            
-            return resultNumberString;
+            for (int i = 0; i < numberOfDigitsToCheck; i++) {
+                
+                NSRange rangeOfFirstNumber = NSMakeRange(i, 1);
+                NSRange rangeOfSecondNumber = NSMakeRange(numberOfDigitsInNumber - (i + 1) , 1);
+                
+                NSString *firstNumber = [s substringWithRange:rangeOfFirstNumber];
+                NSString *secondNumber = [s substringWithRange:rangeOfSecondNumber];
+                
+                if (![firstNumber isEqualToString:strinfForReplace] && ![secondNumber isEqualToString:strinfForReplace]) {
+                    [resultNumberString setString:[resultNumberString stringByReplacingCharactersInRange:rangeOfFirstNumber withString:strinfForReplace]];
+                    numberOfAvailableReplacements--;
+                    
+                    [resultNumberString setString:[resultNumberString stringByReplacingCharactersInRange:rangeOfSecondNumber withString:strinfForReplace]];
+                    numberOfAvailableReplacements--;
+                    
+                    break;
+                }
+            }
             
         } else if (numberOfAvailableReplacements == 1) {
             
             if (isNumberOfDigitsOdd) {
                 NSRange rangeOfMiddleDigit = NSMakeRange(numberOfDigitsToCheck + 1, 1);
                 [resultNumberString setString:[resultNumberString stringByReplacingCharactersInRange:rangeOfMiddleDigit withString:strinfForReplace]];
+                numberOfAvailableReplacements--;
             }
-            return resultNumberString;
-            
-        } else {
-            return resultNumberString;
-        }
-        
-        
-        
+        } 
+    }
+        NSLog(@"%@", resultNumberString);
+        return resultNumberString;
     }
 }
 
