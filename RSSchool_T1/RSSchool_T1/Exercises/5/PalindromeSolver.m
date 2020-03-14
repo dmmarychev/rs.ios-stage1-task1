@@ -8,7 +8,7 @@
     NSMutableString *resultNumberString = [NSMutableString stringWithString:s];
     int numberOfDigitsInNumber = [n intValue];
     int numberOfAvailableReplacements = [k intValue];
-    NSString *strinfForReplace = @"9";
+    NSString *stringForReplace = @"9";
     
     BOOL isNumberOfDigitsOdd = (numberOfDigitsInNumber % 2 != 0) ? YES : NO;
     int numberOfDigitsToCheck = isNumberOfDigitsOdd ? (numberOfDigitsInNumber - 1 / 2) : (numberOfDigitsInNumber / 2);
@@ -60,11 +60,11 @@
             NSString *secondNumber = [s substringWithRange:rangeOfSecondNumber];
             
             
-            if ([firstNumber isEqualToString:strinfForReplace] && numberOfAvailableReplacements != 0) {
-                [resultNumberString setString:[resultNumberString stringByReplacingCharactersInRange:rangeOfSecondNumber withString:strinfForReplace]];
+            if ([firstNumber isEqualToString:stringForReplace] && numberOfAvailableReplacements != 0) {
+                [resultNumberString setString:[resultNumberString stringByReplacingCharactersInRange:rangeOfSecondNumber withString:stringForReplace]];
                 numberOfAvailableReplacements--;
-            } else if ([secondNumber isEqualToString:strinfForReplace] && numberOfAvailableReplacements != 0) {
-                [resultNumberString setString:[resultNumberString stringByReplacingCharactersInRange:rangeOfFirstNumber withString:strinfForReplace]];
+            } else if ([secondNumber isEqualToString:stringForReplace] && numberOfAvailableReplacements != 0) {
+                [resultNumberString setString:[resultNumberString stringByReplacingCharactersInRange:rangeOfFirstNumber withString:stringForReplace]];
                 numberOfAvailableReplacements--;
             } else {
                 continue;
@@ -84,11 +84,11 @@
                 NSString *firstNumber = [s substringWithRange:rangeOfFirstNumber];
                 NSString *secondNumber = [s substringWithRange:rangeOfSecondNumber];
                 
-                if (![firstNumber isEqualToString:strinfForReplace] && ![secondNumber isEqualToString:strinfForReplace]) {
-                    [resultNumberString setString:[resultNumberString stringByReplacingCharactersInRange:rangeOfFirstNumber withString:strinfForReplace]];
+                if (![firstNumber isEqualToString:stringForReplace] && ![secondNumber isEqualToString:stringForReplace]) {
+                    [resultNumberString setString:[resultNumberString stringByReplacingCharactersInRange:rangeOfFirstNumber withString:stringForReplace]];
                     numberOfAvailableReplacements--;
                     
-                    [resultNumberString setString:[resultNumberString stringByReplacingCharactersInRange:rangeOfSecondNumber withString:strinfForReplace]];
+                    [resultNumberString setString:[resultNumberString stringByReplacingCharactersInRange:rangeOfSecondNumber withString:stringForReplace]];
                     numberOfAvailableReplacements--;
                     
                     break;
@@ -99,12 +99,11 @@
             
             if (isNumberOfDigitsOdd) {
                 NSRange rangeOfMiddleDigit = NSMakeRange(numberOfDigitsToCheck + 1, 1);
-                [resultNumberString setString:[resultNumberString stringByReplacingCharactersInRange:rangeOfMiddleDigit withString:strinfForReplace]];
+                [resultNumberString setString:[resultNumberString stringByReplacingCharactersInRange:rangeOfMiddleDigit withString:stringForReplace]];
                 numberOfAvailableReplacements--;
             }
         } 
     }
-        NSLog(@"%@", resultNumberString);
         return resultNumberString;
     }
 }

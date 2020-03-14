@@ -28,8 +28,6 @@
         while (self.isArrayHappy != YES) {
             happyArray = [self sendArrayToClean:happyArray];
         }
-        
-        NSLog(@"%@", happyArray);
         return happyArray;
     }
 }
